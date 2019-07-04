@@ -6,7 +6,7 @@ const About = () => (
   <ul>
     <li>
       <NavLink to="/">
-        Home
+        Landing
       </NavLink>
     </li>
     <li>
