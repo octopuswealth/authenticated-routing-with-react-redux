@@ -5,20 +5,20 @@ import { Route, Router } from "react-router-dom";
 import history from "./history";
 import Nav from "./components/Nav";
 import Pages from "./routes/Pages";
-import { unauthenticate } from "./actions/current";
+import { logOut } from "./actions/current";
 
 interface IProps {
-  unauthenticateConnect: () => void;
+  logOutConnect: () => void;
 }
 
-const App = ({ unauthenticateConnect }: IProps) => {
+const App = ({ logOutConnect }: IProps) => {
   React.useEffect(() => {
     getAuthState();
   }, []);
 
   const getAuthState = () => {
     // normally you'd do fancy stuff with your server, this will assume logged out
-    unauthenticateConnect();
+    logOutConnect();
   };
 
   return (
@@ -34,7 +34,7 @@ const App = ({ unauthenticateConnect }: IProps) => {
 }
 
 const mapDispatchToProps = {
-  unauthenticateConnect: unauthenticate
+  logOutConnect: logOut
 };
 
 export default connect(

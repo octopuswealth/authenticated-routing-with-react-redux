@@ -1,21 +1,21 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { authenticate } from "../../actions/current";
+import { logIn } from "../../actions/current";
 
 interface IProps {
-  authenticateConnect: () => void;
+  logInConnect: () => void;
 }
 
-const LogIn = ({ authenticateConnect }: IProps) => (
+const LogIn = ({ logInConnect }: IProps) => (
   <>
     <p>Login page</p>
-    <button onClick={authenticateConnect}>log me in</button>
+    <button onClick={logInConnect}>log me in</button>
   </>
 );
 
 const mapDispatchToProps = {
-  authenticateConnect: authenticate
+  logInConnect: logIn
 };
 
 export default connect(
