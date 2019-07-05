@@ -22,12 +22,10 @@ const App = ({ checkAuthenticationConnect }: IProps) => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Router history={history}>
-          <Nav />
-          <Route component={Pages} />
-        </Router>
-      </header>
+      <Router history={history}>
+        <Nav />
+        <Route component={Pages} />
+      </Router>
     </div>
   );
 }
