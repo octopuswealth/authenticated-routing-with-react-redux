@@ -1,33 +1,43 @@
 import * as React from "react";
-import { Provider } from "react-redux";
+import { connect } from "react-redux";
 import { Route, Router } from "react-router-dom";
-import { applyMiddleware, compose, createStore } from "redux";
 
 import history from "./history";
-import { ICurrent } from "./types";
 import Nav from "./components/Nav";
-import currentReducer from "./reducers/current";
 import Pages from "./routes/Pages";
+import { unauthenticate } from "./actions/current";
 
-const store = createStore<ICurrent, any, any, any>(
-  currentReducer,
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
-  undefined,
-);
+interface IProps {
+  unauthenticateConnect: () => void;
+}
 
-const App: React.FC = () => {
+const App = ({ unauthenticateConnect }: IProps) => {
+  React.useEffect(() => {
+    getAuthState();
+  }, []);
+
+  const getAuthState = () => {
+    // normally you'd do fancy stuff with your server, this will assume logged out
+    unauthenticateConnect();
+  };
+
   return (
-    <Provider store={store}>
-      <div className="App">
-        <header className="App-header">
-          <Router history={history}>
-            <Nav />
-            <Route component={Pages} />
-          </Router>
-        </header>
-      </div>
-    </Provider>
+    <div className="App">
+      <header className="App-header">
+        <Router history={history}>
+          <Nav />
+          <Route component={Pages} />
+        </Router>
+      </header>
+    </div>
   );
 }
 
-export default App;
+const mapDispatchToProps = {
+  unauthenticateConnect: unauthenticate
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(App);
