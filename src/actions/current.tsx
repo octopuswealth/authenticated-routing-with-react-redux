@@ -41,8 +41,11 @@ export function logOut() {
 
 export function checkAuthentication() {
   return async (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
-    const authenticated = await window.localStorage.getItem("authenticated");
+    const auth = await window.localStorage.getItem("authenticated");
+    const formattedAuth = typeof auth === "string" ?
+      JSON.parse(auth) :
+      null;
 
-    authenticated ? dispatch(authenticate()) : dispatch(unauthenticate());
+    formattedAuth ? dispatch(authenticate()) : dispatch(unauthenticate());
   };
 }
