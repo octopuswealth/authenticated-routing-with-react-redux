@@ -6,12 +6,17 @@ import history from "./history";
 import Nav from "./components/Nav";
 import Pages from "./routes/Pages";
 import { checkAuthentication } from "./actions/current";
+import { ICurrent } from "./types";
 
 interface IProps {
   checkAuthenticationConnect: () => void;
+  isAuthenticated: boolean | null;
 }
 
-const App = ({ checkAuthenticationConnect }: IProps) => {
+const App = ({
+  checkAuthenticationConnect,
+  isAuthenticated
+}: IProps) => {
   React.useEffect(() => {
     getAuthState();
   }, []);
@@ -20,21 +25,29 @@ const App = ({ checkAuthenticationConnect }: IProps) => {
     checkAuthenticationConnect();
   };
 
+  const app = isAuthenticated !== null ? (
+    <Router history={history}>
+      <Nav />
+      <Route component={Pages} />
+    </Router>
+  ) : null;
+
   return (
     <div className="App">
-      <Router history={history}>
-        <Nav />
-        <Route component={Pages} />
-      </Router>
+      {app}
     </div>
   );
 }
+
+const mapStateToProps = (state: ICurrent) => ({
+  isAuthenticated: state.isAuthenticated
+});
 
 const mapDispatchToProps = {
   checkAuthenticationConnect: checkAuthentication
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(App);
