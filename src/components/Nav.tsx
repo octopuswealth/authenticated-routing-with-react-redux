@@ -9,7 +9,7 @@ interface IProps {
   uuid: string | null;
 }
 
-const About = ({ isAuthenticated, uuid }: IProps) => {
+const Nav = ({ isAuthenticated, uuid }: IProps) => {
   const logInOut = isAuthenticated ? (
     <li>
       <NavLink to="/log-out">
@@ -73,4 +73,4 @@ const mapStateToProps = (state: ICurrent) => ({
 
 export default connect(
   mapStateToProps,
-)(About);
+)(Nav);
