@@ -27,12 +27,14 @@ export type AuthenticationAction = IAuthenticate | IUnauthenticate;
 
 export function logIn() {
   return (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
+    window.localStorage.setItem("authenticated", "true");
     dispatch(authenticate());
   };
 }
 
 export function logOut() {
   return async (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
+    window.localStorage.setItem("authenticated", "false");
     dispatch(unauthenticate());
   };
 }
