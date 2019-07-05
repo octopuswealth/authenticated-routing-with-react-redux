@@ -33,7 +33,7 @@ export function logIn() {
 }
 
 export function logOut() {
-  return async (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
+  return (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
     window.localStorage.setItem("authenticated", "false");
     dispatch(unauthenticate());
   };
