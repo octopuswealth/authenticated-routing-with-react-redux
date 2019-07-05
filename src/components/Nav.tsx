@@ -24,18 +24,35 @@ const About = ({ isAuthenticated, uuid }: IProps) => {
     </li>
   );
 
+  const mainLinks = isAuthenticated ? (
+    <li>
+      <NavLink to="/home">
+        Home
+      </NavLink>
+    </li>
+  ) : (
+    <>
+      <li>
+        <NavLink to="/">
+          Landing
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">
+          About
+        </NavLink>
+      </li>
+    </>
+  );
+
   return (
     <>
       <p>{isAuthenticated ? `Logged in user: ${uuid}` : "Logged out"}</p>
       <ul>
+        {mainLinks}
         <li>
-          <NavLink to="/">
-            Landing
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/about">
-            About
+          <NavLink to="/terms">
+            Terms
           </NavLink>
         </li>
         <li>
