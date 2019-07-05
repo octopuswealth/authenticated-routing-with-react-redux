@@ -38,3 +38,11 @@ export function logOut() {
     dispatch(unauthenticate());
   };
 }
+
+export function checkAuthentication() {
+  return async (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
+    const authenticated = await window.localStorage.getItem("authenticated");
+
+    authenticated ? dispatch(authenticate()) : dispatch(unauthenticate());
+  };
+}
