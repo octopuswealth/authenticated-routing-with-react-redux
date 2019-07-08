@@ -14,7 +14,8 @@ interface IProps {
 
 const LoggedOutRoute = ({
   component: Component,
-  isAuthenticated
+  isAuthenticated,
+  ...otherProps
 }: IProps) => {
   React.useEffect(() => {
     if (isAuthenticated === true) {
@@ -29,9 +30,9 @@ const LoggedOutRoute = ({
         Logged Out Header
       </header>
       <Route
-        render={props => (
+        render={otherProps => (
           <>
-            <Component {...props} />
+            <Component {...otherProps} />
           </>
         )}
       />
