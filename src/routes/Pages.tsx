@@ -9,6 +9,7 @@ import LogIn from "../components/pages/LogIn";
 import LogOut from "../components/pages/LogOut";
 import NotFound from "../components/pages/NotFound";
 import Terms from "../components/pages/Terms";
+
 import LoggedInRoute from "../routes/LoggedInRoute";
 import LoggedOutRoute from "../routes/LoggedOutRoute";
 
