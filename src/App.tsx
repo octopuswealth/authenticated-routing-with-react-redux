@@ -18,12 +18,8 @@ const App = ({
   isAuthenticated
 }: IProps) => {
   React.useEffect(() => {
-    getAuthState();
-  }, []);
-
-  const getAuthState = () => {
     checkAuthenticationConnect();
-  };
+  }, []);
 
   const app = isAuthenticated !== null ? (
     <Router history={history}>
