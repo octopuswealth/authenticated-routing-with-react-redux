@@ -17,12 +17,10 @@ const LoggedInRoute = ({
   isAuthenticated,
   ...otherProps
 }: IProps) => {
-  React.useEffect(() => {
-    if (isAuthenticated === false) {
-      history.push("/log-in");
-      alert("this is a logged in route, you are logged out, redirected to log in");
-    }
-  }, [isAuthenticated]);
+  if (isAuthenticated === false) {
+    history.push("/log-in");
+    alert("this is a logged in route, you are logged out, redirected to log in");
+  }
 
   return (
     <>
